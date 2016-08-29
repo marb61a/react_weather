@@ -8,7 +8,7 @@ var Weather = React.createClass({
     getInitialState : function(){
         return{
             isLoading : false
-        }
+        };
     },
     
     handleSearch : function(location){
@@ -42,6 +42,19 @@ var Weather = React.createClass({
             this.handleSearch(location);
             window.location.hash = '#/';
         }
+    },
+    
+    componentWillRecieveProps : function(newProps){
+        var location = newProps.location.query.location;
+        
+        if(location && location.length > 0){
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
+    },
+    
+    render : function(){
+        var {isLoading, temp, location, errorMessage} = this.state;
     }
 });
 
